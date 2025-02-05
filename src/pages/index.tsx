@@ -1,13 +1,21 @@
 import Door from "@/components/Door";
-import DoorModel from "@/model/Door";
+import { createDoors, updateDoors } from "@/functions/door";
 import { useState } from "react";
 
 export default function Home() {
-  const [door1, setDoor1] = useState(new DoorModel(1));
+
+  const [door, setDoor] = useState(createDoors(3));
+
+  function renderDoors(){
+    console.log(door);
+    return door.map(d => {
+      return <Door key={d.getNumber()} value={d} onChange={d => setDoor(updateDoors(door, d))} />
+    })
+  }
 
   return (
-      <div className="flex flex-col gap-4">
-        <Door value={door1} onChance={newDoor => setDoor1(newDoor)} />
+      <div className="flex gap-4">
+        {renderDoors()}
       </div>
   );
 }
