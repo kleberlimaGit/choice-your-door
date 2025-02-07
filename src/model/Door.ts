@@ -1,7 +1,7 @@
 export default class DoorModel {
     private number: number;
     private hasGift: boolean;
-    private selected: boolean;
+    private selected: boolean;  
     private opened: boolean;
 
     constructor(number: number, hasGift = false, selected = false, opened = false) {

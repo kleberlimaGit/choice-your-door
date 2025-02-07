@@ -1,4 +1,5 @@
 import DoorModel from "@/model/Door";
+import Gift from "./Gift";
 
 interface DoorProps {
     value: DoorModel;
@@ -36,10 +37,10 @@ export default function Door(props: DoorProps) {
 
     return (
         <div className="flex w-48 h-72 items-center flex-col relative" data-text="area" onClick={toggleSelect}>
-            <div className={` flex flex-grow border-t-4 border-r-4 border-l-4 w-10/12 bg-black bg-opacity-30
+            <div className={` flex flex-grow border-t-4 border-r-4 border-l-4 w-10/12 bg-black bg-opacity-30 flex-col-reverse
                 ${door.isSelected() ? 'border-yellow-400' : 'border-red-800'} 
                 `} data-text="frame">
-                {door.isOpened() ? false : renderDoor()}
+                {!door.isOpened() ? renderDoor() : door.isHasGift() ?  <Gift /> : false}
             </div>
             <div className="h-2 w-full bg-slate-200" data-text="floor"></div>
         </div>
